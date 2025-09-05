@@ -4,6 +4,13 @@ const loadLesson = () => {
         .then(res => res.json())
         .then((json) => displayLesson(json.data));
 }
+
+function pronounceWord(word) {
+      const utterance = new SpeechSynthesisUtterance(word);
+      utterance.lang = 'en-EN'; // English
+      window.speechSynthesis.speak(utterance);
+    }
+
 const loadWords=(id)=>{
     // console.log(id);
     manageSpinner(true);
@@ -60,8 +67,8 @@ const displayLessonWord=(words)=>{
                 <div class="flex justify-between items-center">
                     <button onclick="loadWordDetails(${word.id})" class="btn bg-[#1a91ff1a] hover:bg-[#1a90ff88] p-3 rounded-lg">
                         <i class="fa-solid fa-circle-info"></i>
-                    </button>
-                    <button class="btn bg-[#1a91ff1a] hover:bg-[#1a90ff88]  p-3 rounded-lg">
+                    </button>"
+                    <button onclick="pronounceWord('${word.word}')" class="btn bg-[#1a91ff1a] hover:bg-[#1a90ff88]  p-3 rounded-lg">
                         <i class="fa-solid fa-volume-high"></i>
                     </button>
                 </div>
@@ -82,7 +89,6 @@ const manageSpinner=(status)=>{
         document.getElementById('spinner').classList.add('hidden')
     }
 }
-
 
 const loadWordDetails=async(id)=>{
     // console.log(id);
@@ -161,9 +167,23 @@ const displayLesson = (lessons) => {
     })
 
 }
+
 loadLesson()
-
-
+// search
+document.getElementById('btn-search').addEventListener('click',()=>{
+    removeActive()
+    const input=document.getElementById('input-search');
+    const inputSearchValue=input.value.trim().toLowerCase();
+    // console.log(inputSearchValue);
+    
+    fetch('https://openapi.programming-hero.com/api/words/all')
+    .then(res=>res.json())
+    .then(data=>{
+        const allWords=(data.data);
+        const filterWords=allWords.filter((word) => word.word.toLowerCase().includes(inputSearchValue));
+        displayLessonWord(filterWords)
+    }); 
+});
 
 //...................................................................
     // for (let lesson of lessons) {
