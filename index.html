@@ -47,7 +47,7 @@
                                     class="fa-solid fa-arrow-right-from-bracket"></i>LogOut</a></li>
                     </ul>
                 </div>
-                <a class="btn bg-[#ecf6feb1] text-2xl">
+                <a class="btn bg-[#ecf6feb1] text-2xl" href="./index.html">
                     <span class=" font-semibold text-[#18181B]">English</span>
                     <img src="./assets/logo.png" alt="">
                     <span class="font-bangla  text-[#000]">জানালা</span>
@@ -85,15 +85,42 @@
         </section>
         <!-- learn Vocabulary -->
         <section>
-            <h1 class="font-bold text-2xl text-center my-4"><span class="text-[#00bcff]">Lets's</span> Learn
+            <h1 class="font-bold text-3xl text-center my-4"><span class="text-[#00bcff]">Lets's</span> Learn
                 Vocabularies</h1>
             <div id="lesson-container" class="flex gap-2 flex-wrap justify-center items-center mb-4">
 
             </div>
         </section>
+
+        <!-- spinner -->
+        <div id="spinner" class="flex justify-center items-center col-span-full hidden py-16">
+            <span class="loading loading-bars loading-xl"></span>
+        </div>
         <!-- lesson card -->
-        <section id="Words-container" class="grid grid-cols-3 gap-3 bg-[#F8F8F8] rounded-lg p-10">
-            
+        <section id="Words-container" class="grid grid-cols-3 gap-3 bg-[#F8F8F8] rounded-lg p-10 mb-8">
+            <div class="text-center col-span-full space-y-3 py-4">
+                <p class="text-[#79716B] text-[16px] font-bangla">আপনি এখনো কোন Lesson Select করেননি</p>
+                <h2 class="text-[#292524] text-3xl font-medium font-bangla">একটি Lesson Select করুন।</h2>
+            </div>
+
+        </section>
+        <!-- modal -->
+        <section>
+            <!-- Open the modal using ID.showModal() method -->
+            <!-- <button class="btn" onclick="my_modal_5.showModal()">open modal</button> -->
+            <dialog id="word_modal" class="modal modal-bottom sm:modal-middle">
+                <div class="modal-box">
+                    <div id="details-container" class="p-3 border-1 border-gray-200 space-y-3">
+
+                    </div>
+                    <div class="modal-action justify-start">
+                        <form method="dialog">
+                            <!-- if there is a button in form, it will close the modal -->
+                            <button class="btn btn-primary">Complete Learning</button>
+                        </form>
+                    </div>
+                </div>
+            </dialog>
         </section>
     </main>
     <footer></footer>
